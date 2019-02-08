@@ -1,5 +1,7 @@
 --[[
-Habitat HUD Coded by baristaner
+Habitat HUD 
+
+On Developement
 --]]
 
 hook.Add( "HUDPaint", "HabitatHUD", function()
