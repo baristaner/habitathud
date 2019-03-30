@@ -4,6 +4,19 @@ Habitat HUD
 On Developement
 --]]
 
+local habitat = { ["CHudAmmo"] = true, ["DarkRP_HUD"] = false,["DarkRP_EntityDisplay"] = false,["DarkRP_ZombieInfo"] = true,["DarkRP_LocalPlayerHUD"] = true,["DarkRP_Hungermod"] = true,["DarkRP_Agenda"] = false}
+function deaktif(element)
+    if habitat[element] then return false end
+end
+hook.Add("HUDShouldDraw", "deaktif", deaktif)
+
+if SERVER then
+    resource.AddFile("materials/habitat/can.png")
+    resource.AddFile("materials/habitat/zirh.png")
+    resource.AddFile("materials/habitat/silah.png")
+end    
+
+
 hook.Add( "HUDPaint", "HabitatHUD", function()
 
      draw.RoundedBox(4, ScrW() - 1300, ScrH () - 120 - 10, 345,325, Color(50,50,50,250))
@@ -34,6 +47,21 @@ hook.Add( "HUDPaint", "HabitatHUD", function()
 
     draw.SimpleText( LocalPlayer():getDarkRPVar( "job" ), "Trebuchet24", ScrW() /10,  ScrH() /1.273 , Color(255,255,255,255)) 
 
+    local can = Material("materials/habitat/can.png");
+    local zirh = Material("materials/habitat/zirh.png");
+    local silah = Material("materials/habitat/silah.png");
+
+    surface.SetMaterial(can);
+    surface.SetDrawColor(255,255,255,255) 
+    surface.DrawTexturedRect( ScrW()/1-1150, 621,  25,25); 
+
+    surface.SetMaterial(zirh);
+    surface.SetDrawColor(255,255,255,255) 
+    surface.DrawTexturedRect( ScrW()/1-1150, 660,  25,25); 
+
+    surface.SetMaterial(silah);
+    surface.SetDrawColor(255,255,255,255) 
+    surface.DrawTexturedRect( ScrW()/1-1000, 580,  50,50); 
 
 
     draw.DrawText( EchoArmor, "Trebuchet24", ScrW() - 1085+ 2, ScrH () - 60 + 2, Color(255,255,255,255))
@@ -43,7 +71,8 @@ Avatar:SetSize( 75, 75 )
 Avatar:SetPos( 18, 596 )
 Avatar:SetPlayer( LocalPlayer(), 64 )
 
-draw.DrawText( LocalPlayer():getDarkRPVar( "job" ), "Trebuchet24", ScrW() - 1078 + 2, ScrH () - 65 + 2, Color(255,255,255,255))
+
+end )
 
 
 
